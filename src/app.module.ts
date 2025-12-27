@@ -8,6 +8,7 @@ import { ReconciliationModule } from './reconciliation/reconciliation.module';
 import { PrismaService } from './prisma/prisma.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { BullModule } from '@nestjs/bullmq';
+import { PaymentsController } from './payments/payments.controller';
 
 @Module({
   imports: [PaymentsModule, WebhooksModule, PrismaModule,JobsModule, ReconciliationModule, BullModule.forRoot({

@@ -6,8 +6,10 @@ import { PaymentsService } from './payments.service';
 export class PaymentsController {
   constructor(private readonly service: PaymentsService) {}
 
-  @Post()
+  @Post('create')
   create(@Body() dto: CreatePaymentDto) {
+    console.log("body", dto);
+  //return { received: dto.amount };
     return this.service.create(dto);
   }
 }

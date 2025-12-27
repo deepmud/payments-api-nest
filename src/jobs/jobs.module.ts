@@ -3,6 +3,7 @@ import { PaymentsWorker } from './payments.worker';
 import { PaymentsProducer } from './payments.producer';
 import { PrismaModule } from '../prisma/prisma.module';
 import { BullModule } from '@nestjs/bullmq';
+import { PaymentsQueue } from './payments.queue';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { BullModule } from '@nestjs/bullmq';
       },
     }),
   ],
-  providers: [PaymentsProducer, PaymentsWorker],
+  providers: [PaymentsProducer,PaymentsQueue, PaymentsWorker],
+  exports:[PaymentsQueue]
 })
 export class JobsModule {}
 

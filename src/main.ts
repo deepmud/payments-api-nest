@@ -14,6 +14,7 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('api');
 
   app.use(
     express.json({
@@ -23,8 +24,18 @@ async function bootstrap() {
     }),
   );
 
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true,forbidNonWhitelisted: true }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: {
+        enableImplicitConversion: true, // 🔥 THIS FIXES IT
+      },
+    }),
+  );
   await app.listen(3000);
+
 }
 bootstrap();
 

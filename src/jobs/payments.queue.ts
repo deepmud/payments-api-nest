@@ -12,5 +12,9 @@ export class PaymentsQueue {
       attempts: 5,
       backoff: { type: 'exponential', delay: 2000 },
     });
+
+    
+    console.log("body", 'queueddddd');
+
   }
 }

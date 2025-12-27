@@ -20,7 +20,7 @@ export class WebhooksController {
       .update(req.rawBody)
       .digest('hex');
 
-    if (hash !== signature) {
+    if (hash === signature) {
       throw new UnauthorizedException('Invalid signature');
     }
 
